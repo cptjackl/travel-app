@@ -1,0 +1,110 @@
+﻿@page "/plantrip/{Id:int}"
+@using TravelApp.Data
+@rendermode InteractiveServer
+@inject NavigationManager Navigator
+@inject TravelDbContext context
+
+<h3>Plan Trip for @traveler.first_name @traveler.last_name</h3>
+<br/>
+
+<div class="float-end p-4 m-3 border rounded bg-light w-25">
+    <h4>Trip Itinerary: </h4>
+    
+    <ol>
+        @foreach (TripPlan t in tripPlan) {
+            <li>@allDestinations.Find(d=>d.destination_id==t.destinationId).name</li>
+        }
+    </ol>
+    
+    <p>Total Estimated Cost: @totalCost</p>
+    
+    <p> Experience Types Selected: </p>
+    <ul>
+        @foreach (TripPlan t in tripPlan) {
+            <li> @allDestinations.Find(d=>d.destination_id==t.destinationId).experience_type</li>
+        }
+    </ul>
+</div>
+
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-left">
+        @foreach (var destination in allDestinations) {
+            <DestinationCard Destination="destination" style="@traveler.style" onPlan="tripDestinations.Contains(destination.destination_id)" ToggleTripRequest="HandleToggleTrip"/>
+        }</div>
+    </div>
+
+<NavLink href="/"> Go back to travelers page</NavLink>
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Traveler? traveler;
+    private List<TripPlan>? tripPlan = new List<TripPlan>();
+
+    private List<Destination> allDestinations { get; set; }
+    private List<int> tripDestinations = new List<int>();
+
+    private double totalCost = 0;
+
+    protected override void OnInitialized() {
+         traveler = context.Travelers.Find(Id);
+        if (traveler == null){
+            Navigator.NavigateTo("/");
+        }
+        allDestinations = context.Destinations.ToList();
+
+        UpdateTripPlanList();
+        UpdateTripDestinationsList();
+
+    }
+
+    private async Task HandleToggleTrip(int destinationId) {
+        Console.WriteLine(tripDestinations.Contains(destinationId));
+        if (tripDestinations.Contains(destinationId)){
+            context.TripPlans.Remove(tripPlan.Find(t => t.destinationId == destinationId));
+            Console.WriteLine("Removed!");
+        }
+        else {
+            var newPlan = new TripPlan { travelerId = Id, destinationId = destinationId };
+            Console.WriteLine("Added!");
+            context.TripPlans.Add(newPlan);
+        }
+        await context.SaveChangesAsync();
+        await UpdateTripPlanList();
+        UpdateTripDestinationsList();
+        StateHasChanged();
+    }
+
+    private async Task UpdateTripPlanList() {
+         tripPlan = context.TripPlans.ToList().FindAll(t => t.travelerId == traveler.Id);
+         totalCost = 0;
+         foreach (var t in tripPlan) {
+             totalCost += allDestinations.Find(d => d.destination_id == t.destinationId).cost_estimate;
+         }
+    }
+    private void UpdateTripDestinationsList() {
+        tripDestinations.Clear();
+        foreach (var t in tripPlan) {
+            tripDestinations.Add(t.destinationId);
+        }
+    }
+
+}
+
+<style>
+    .pill-toggle {
+        background-color: var(--bs-primary);
+        border: 1px solid var(--bs-primary);
+        color: #fff;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    /* Checked = red pill */
+    .btn-check:checked + .pill-toggle {
+        background-color: var(--bs-danger);
+        border-color: var(--bs-danger);
+        color: #fff;
+    }
+
+</style>

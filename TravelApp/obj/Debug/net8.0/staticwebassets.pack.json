@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/obj/Debug/net8.0/scopedcss/projectbundle/TravelApp.bundle.scp.css",
+      "PackagePath": "staticwebassets/TravelApp.bundle.scp.css"
+    },
+    {
+      "Id": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.TravelApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.TravelApp.props",
+      "PackagePath": "build\\TravelApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.TravelApp.props",
+      "PackagePath": "buildMultiTargeting\\TravelApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.TravelApp.props",
+      "PackagePath": "buildTransitive\\TravelApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

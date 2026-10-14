@@ -1,0 +1,62 @@
+﻿@page "/addtraveler"
+@using TravelApp.Data
+@inject TravelDbContext context
+@inject NavigationManager nav
+@rendermode InteractiveServer
+
+<h3>Add Traveler</h3>
+<EditForm Model="@newTraveler" OnValidSubmit="@CreateTraveler">
+    <DataAnnotationsValidator />
+    <ValidationSummary class="text-danger" />
+
+    <label for="FirstName">First Name:</label><br/>
+    <InputText id="FirstName" @bind-Value="newTraveler.first_name"/><br/>
+    <ValidationMessage For="() => newTraveler.first_name" class="text-danger" />
+
+    <label for="LastName">Last Name:</label><br/>
+    <InputText id="LastName" @bind-Value="newTraveler.last_name"/><br/>
+    <ValidationMessage For="() => newTraveler.last_name" class="text-danger" />
+
+    <label for="style">Travel Style:</label><br/>
+    <InputSelect id="style" @bind-Value="newTraveler.style">
+        <option value="">-- Select style --</option>
+        @foreach (var s in styles) {
+            <option value="@s">@s</option>
+        }
+    </InputSelect><br/>
+    <ValidationMessage For="() => newTraveler.style" class="text-danger" />
+
+    <input type="submit" value="Add Traveler">
+</EditForm>
+
+<NavLink href="/"> Go back to travelers page</NavLink>
+
+@code {
+    List<String> styles = new List<string>();
+    
+    [SupplyParameterFromForm]
+    public Traveler newTraveler { get; set; } = new();
+    
+
+
+    private void CreateTraveler() {
+        context.Travelers.Add(newTraveler);
+        context.SaveChanges();
+        nav.NavigateTo("/");
+    }
+    
+    private List<Traveler> travelers { get; set; }
+
+    protected override void OnInitialized()
+    {
+        travelers = context.Travelers.ToList();
+
+        foreach (var t in travelers) {
+            if (styles.Contains(t.style)) { }
+            else {
+                styles.Add(t.style);
+            }
+        }
+    }
+
+}

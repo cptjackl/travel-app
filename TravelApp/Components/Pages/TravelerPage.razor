@@ -1,0 +1,52 @@
+﻿@page "/"
+@using TravelApp.Data
+@inject TravelDbContext context
+ 
+@rendermode InteractiveServer
+@inject NavigationManager Navigator
+
+
+<PageTitle>Travelers</PageTitle>
+
+<h1>Travelers</h1>
+
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Style</th>
+            <th>Action</th>
+        </tr>
+        @foreach (Traveler customer in customers) {
+            <tr>
+                <td>@customer.Id</td>
+                <td>@customer.first_name </td>
+                <td>@customer.last_name</td>
+                <td>@customer.style</td>
+                <td><button style="!important;" class="bg-primary btn-primary rounded-pill"@onclick="() => PlanTrip(customer.Id)" >Plan Trip</button></td>
+            </tr>
+        }
+    </table>
+    <button class="btn btn-primary rounded-pill" @onclick="() => NewTraveler()" >Add Traveler</button>
+</div>
+
+
+@code {
+
+    private List<Traveler> customers;
+
+    private void PlanTrip(int id) {
+        Navigator.NavigateTo($"/plantrip/{id}");
+    }
+
+    private void  NewTraveler() {
+        Navigator.NavigateTo("/addtraveler");
+    }
+
+    protected override void OnInitialized() {
+       customers  = context.Travelers.ToList();
+    }
+
+}

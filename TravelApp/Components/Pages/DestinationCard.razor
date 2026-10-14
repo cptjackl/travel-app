@@ -1,0 +1,48 @@
+﻿@using TravelApp.Data
+@inject TravelDbContext context
+
+<div class="col" style="max-width: 30%; border: 1px solid lightslategray; border-radius: 10px; padding: 10px; margin: 10px;">
+    <h4>@Destination.name</h4>
+    
+    <p>@Destination.experience_type -- @Destination.cost_estimate</p>
+
+    @switch (style) {
+        case "Budget": {
+            if (Destination.cost_estimate < 1500) {
+                <InputCheckbox id="@Destination.name" class = "btn-check" @bind-Value="onPlan" @oninput="ToggleTrip" ></InputCheckbox>
+                <label class="btn rounded-pill px-3 py-1 pill-toggle" for="@Destination.name"> @(onPlan ? "Remove" : "Add") </label>
+            }
+            break;
+        }
+        case "Adventure": {
+            if (Destination.experience_type is "Nature" or "Culture") {
+                <InputCheckbox id="@Destination.name" class = "btn-check" @bind-Value="onPlan" @oninput="ToggleTrip" ></InputCheckbox>
+                <label class="btn rounded-pill px-3 py-1 pill-toggle" for="@Destination.name"> @(onPlan ? "Remove" : "Add") </label>
+            }
+            break;
+        }
+        case "Luxury": {
+            <InputCheckbox id="@Destination.name" class = "btn-check" @bind-Value="onPlan" @oninput="ToggleTrip" ></InputCheckbox>
+            <label class="btn rounded-pill px-3 py-1 pill-toggle" for="@Destination.name"> @(onPlan ? "Remove" : "Add") </label>
+            break;
+        }
+    }
+    
+</div>
+
+
+@code {
+    [Parameter] public Destination Destination { get; set; } = new Destination();
+
+    [Parameter] public string style { get; set; } = "";
+
+    [Parameter] public bool onPlan { get; set; } = false;
+
+    [Parameter] public EventCallback<int> ToggleTripRequest { get; set; }
+
+    private void ToggleTrip() {
+        ToggleTripRequest.InvokeAsync(Destination.destination_id);
+        StateHasChanged();
+    }
+
+}
