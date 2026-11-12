@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GRJZyqg4sQIXQgKF3zlG24iGs5PFt/QRpIUPivQU14qIy38cWYi6qggqZXY72HP1vQ1N6FagCFKfqM1K1OhtfA==",
+  "dgSpecHash": "31fPzZjimEJO2DBKObw5rPqgT6HDB1ah/RoxocCSaekHTdwgPQ/8oxVUYciNSJVa8ukQkhnX4TJHEwsdUQiN+Q==",
   "success": true,
-  "projectFilePath": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/TravelApp.csproj",
+  "projectFilePath": "/home/cptjackl/Projects/travel-app/TravelApp/TravelApp.csproj",
   "expectedPackageFiles": [
     "/home/cptjackl/.nuget/packages/microsoft.aspnetcore.components.quickgrid/9.0.7/microsoft.aspnetcore.components.quickgrid.9.0.7.nupkg.sha512",
     "/home/cptjackl/.nuget/packages/microsoft.data.sqlite.core/9.0.8/microsoft.data.sqlite.core.9.0.8.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/TravelApp.csproj": {}
+    "/home/cptjackl/Projects/travel-app/TravelApp/TravelApp.csproj": {}
   },
   "projects": {
-    "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/TravelApp.csproj": {
+    "/home/cptjackl/Projects/travel-app/TravelApp/TravelApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/TravelApp.csproj",
+        "projectUniqueName": "/home/cptjackl/Projects/travel-app/TravelApp/TravelApp.csproj",
         "projectName": "TravelApp",
-        "projectPath": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/TravelApp.csproj",
+        "projectPath": "/home/cptjackl/Projects/travel-app/TravelApp/TravelApp.csproj",
         "packagesPath": "/home/cptjackl/.nuget/packages/",
-        "outputPath": "/home/cptjackl/Projects/travel-application-cptjackl-school/TravelApp/obj/",
+        "outputPath": "/home/cptjackl/Projects/travel-app/TravelApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/cptjackl/.nuget/NuGet/NuGet.Config"
@@ -20,6 +20,7 @@
           "net8.0"
         ],
         "sources": {
+          "/usr/lib64/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.130/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.131/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
